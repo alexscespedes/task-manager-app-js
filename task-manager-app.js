@@ -25,9 +25,9 @@ const addTask = function (taskName) {
   }
 };
 
-const removeTask = function (id) {
+const removeTask = function (taskId) {
   // findIndex returns the index (number 0-1)
-  const index = tasks.findIndex((task) => task.id === id);
+  const index = tasks.findIndex((task) => task.id === taskId);
 
   if (index === -1) {
     return "The task doesn't exist";
@@ -37,9 +37,13 @@ const removeTask = function (id) {
   return "Task succesfully removed";
 };
 
-const toggleTaskCompletionStatus = function (id) {
+const toggleTaskStatus = function (taskId) {
   // Find returns the element (object)
-  const task = tasks.find((task) => task.id === id);
+  const task = tasks.find((task) => task.id === taskId);
   if (task) task.completed = !task.completed;
   return task.completed;
 };
+
+const filterTasks = function (taskId) {};
+
+const searchTasks = function (taskId) {};
