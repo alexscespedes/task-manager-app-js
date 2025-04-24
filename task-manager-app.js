@@ -73,6 +73,16 @@ const filterTasksByCompletion = function (status) {
   return tasks.filter((task) => task.completed === status);
 };
 
-const searchTasks = function (query) {};
+const searchTasks = function (query) {
+  const task = tasks.filter((filter) =>
+    JSON.stringify(filter).toLowerCase().includes(query.toLowerCase())
+  );
 
-console.log(filterTasksByCompletion(false));
+  if (task.length === 0) {
+    return "The contact was not found";
+  }
+
+  return task;
+};
+
+console.log(searchTasks("Ad"));
