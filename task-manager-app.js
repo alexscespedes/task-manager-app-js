@@ -9,22 +9,22 @@ const generateIDPlus = () =>
 //   };
 // })();
 
-const tasks = [
-  {
-    id: generateIDPlus(),
-    name: "Advanced JavaScript Exercise",
-    completed: false,
-    createdAt: new Date().toISOString(),
-  },
-  {
-    id: generateIDPlus(),
-    name: "Basic C-Sharp Console App",
-    completed: true,
-    createdAt: new Date().toISOString(),
-  },
-];
+// const tasks = [
+//   {
+//     id: generateIDPlus(),
+//     name: "Advanced JavaScript Exercise",
+//     completed: false,
+//     createdAt: new Date("2015-03-25"),
+//   },
+//   {
+//     id: generateIDPlus(),
+//     name: "Basic C-Sharp Console App",
+//     completed: true,
+//     createdAt: new Date("2015-03-26"),
+//   },
+// ];
 
-// const tasks = [];
+const tasks = [];
 
 // console.log(taskExample);
 
@@ -104,5 +104,20 @@ const updateTask = function (id, newName) {
   return "Task succesfully updated";
 };
 
+const sortTaskByCreationDate = function () {
+  return tasks.sort((a, b) => a.createdAt - b.createdAt);
+};
+
+addTask("Advanced JavaScript Exercise");
+setTimeout(function () {
+  addTask("Basic C-Sharp Console App");
+}, 2000);
 // console.log(updateTask(2, "Intermediate C-Sharp Console App"));
 // console.log(listTasks());
+// console.log(sortTaskByCreationDate());
+setTimeout(function () {
+  console.log(listTasks());
+}, 2000);
+setTimeout(function () {
+  console.log(sortTaskByCreationDate());
+}, 2000);
