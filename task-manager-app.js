@@ -1,7 +1,15 @@
 const generateIDPlus = () =>
   `${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 
-const taskExample = [
+// incrementCounter = (function () {
+//   let counter = 0;
+//   return function () {
+//     counter++;
+//     return counter;
+//   };
+// })();
+
+const tasks = [
   {
     id: generateIDPlus(),
     name: "Advanced JavaScript Exercise",
@@ -16,7 +24,7 @@ const taskExample = [
   },
 ];
 
-const tasks = [];
+// const tasks = [];
 
 // console.log(taskExample);
 
@@ -85,4 +93,16 @@ const searchTasks = function (query) {
   return task;
 };
 
-console.log(searchTasks("Ad"));
+const updateTask = function (id, newName) {
+  const task = tasks.find((task) => task.id === id);
+
+  if (!task) {
+    return "The task doesn't exist";
+  }
+
+  task.name = newName;
+  return "Task succesfully updated";
+};
+
+// console.log(updateTask(2, "Intermediate C-Sharp Console App"));
+// console.log(listTasks());
