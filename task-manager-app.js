@@ -56,7 +56,11 @@ const removeTask = function (taskId) {
 const toggleTaskStatus = function (taskId) {
   // Find returns the element (object)
   const task = tasks.find((task) => task.id === taskId);
-  if (task) task.completed = !task.completed;
+
+  if (!task) {
+    return "The task doesn't exist";
+  }
+  task.completed = !task.completed;
   return task.completed;
 };
 
@@ -75,6 +79,7 @@ const listTasks = function () {
 };
 
 const filterTasksByCompletion = function (status) {
+  // Already validating, with listTasks validations.
   if (status === undefined) {
     return listTasks();
   }
@@ -87,7 +92,7 @@ const searchTasks = function (query) {
   );
 
   if (task.length === 0) {
-    return "The contact was not found";
+    return "The task was not found";
   }
 
   return task;
@@ -105,8 +110,14 @@ const updateTask = function (id, newName) {
 };
 
 const sortTaskByCreationDate = function () {
+  if (tasks.length === 0) {
+    return "No tasks available";
+  }
+
   return tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 };
+
+// const statisticsTask = function () {};
 
 console.log(listTasks());
 console.log(sortTaskByCreationDate());
