@@ -31,14 +31,16 @@ const tasks = [
 const addTask = function (taskName) {
   if (taskName == "") {
     return "The name is empty, please provide it";
-  } else {
-    tasks.push({
-      id: generateIDPlus(),
-      name: taskName,
-      completed: false,
-      createdAt: new Date().toISOString(),
-    });
   }
+
+  tasks.push({
+    id: generateIDPlus(),
+    name: taskName,
+    completed: false,
+    createdAt: new Date().toISOString(),
+  });
+
+  return "Task successfully created";
 };
 
 const removeTask = function (taskId) {
@@ -117,7 +119,14 @@ const sortTaskByCreationDate = function () {
   return tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 };
 
-// const statisticsTask = function () {};
+const statisticsTask = function () {
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter((task) => task.completed === true).length;
 
-console.log(listTasks());
-console.log(sortTaskByCreationDate());
+  return `Total Tasks: ${totalTasks} | Completed Tasks: ${completedTasks}`;
+};
+
+// console.log(listTasks());
+// console.log(sortTaskByCreationDate());
+// console.log(addTask());
+console.log(statisticsTask());
