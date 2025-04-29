@@ -29,8 +29,8 @@ const tasks = [
 // console.log(taskExample);
 
 const addTask = function (taskName) {
-  if (taskName == "") {
-    return "The name is empty, please provide it";
+  if (typeof taskName !== "string" || taskName.trim() === "") {
+    return "Invalid task name. Please provide a non-empty string.";
   }
 
   tasks.push({
@@ -89,15 +89,15 @@ const filterTasksByCompletion = function (status) {
 };
 
 const searchTasks = function (query) {
-  const task = tasks.filter((filter) =>
-    JSON.stringify(filter).toLowerCase().includes(query.toLowerCase())
+  const tasksFound = tasks.filter((task) =>
+    task.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  if (task.length === 0) {
+  if (tasksFound.length === 0) {
     return "The task was not found";
   }
 
-  return task;
+  return tasksFound;
 };
 
 const updateTask = function (id, newName) {
@@ -105,6 +105,10 @@ const updateTask = function (id, newName) {
 
   if (!task) {
     return "The task doesn't exist";
+  }
+
+  if (typeof newName !== "string" || newName.trim() === "") {
+    return "Invalid new name.";
   }
 
   task.name = newName;
@@ -115,8 +119,10 @@ const sortTaskByCreationDate = function () {
   if (tasks.length === 0) {
     return "No tasks available";
   }
-
-  return tasks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  // Here we are making a copy to show the result without changing the tasks array in-place.
+  return [...tasks].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 };
 
 const statisticsTask = function () {
@@ -129,4 +135,4 @@ const statisticsTask = function () {
 // console.log(listTasks());
 // console.log(sortTaskByCreationDate());
 // console.log(addTask());
-console.log(statisticsTask());
+// console.log(searchTasks("App"));
