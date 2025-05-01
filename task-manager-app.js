@@ -81,11 +81,17 @@ const listTasks = function () {
 };
 
 const filterTasksByCompletion = function (status) {
-  // Already validating, with listTasks validations.
-  if (status === undefined) {
-    return listTasks();
+  if (typeof status !== "boolean") {
+    return "Invalid status. Please provide true or false";
   }
-  return tasks.filter((task) => task.completed === status);
+
+  const filteredTasks = tasks.filter((task) => task.completed === status);
+
+  if (filteredTasks.length === 0) {
+    return `No ${status ? "completed" : "active"} task found.`;
+  }
+
+  return filteredTasks;
 };
 
 const searchTasks = function (query) {
@@ -136,3 +142,4 @@ const statisticsTask = function () {
 // console.log(sortTaskByCreationDate());
 // console.log(addTask());
 // console.log(searchTasks("App"));
+// console.log(filterTasksByCompletion(true));
